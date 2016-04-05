@@ -1,0 +1,13 @@
+{
+  "name": "@hik/animate.number.UI.js",
+  "version": "1.0.0",
+  "description": "web数字滚动组件 Animate.Number.UI",
+  "keywords": "数字滚动组件 Animate.Number.UI",
+  "private": false,
+  "license": "ISC",
+  "author": "白云飘飘",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  }
+}
