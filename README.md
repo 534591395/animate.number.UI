@@ -38,6 +38,54 @@
 
 ## API
 
-1. init 方法    
+**init 方法**   
 
-   实例化后调用的初始化方法
+   实例化后调用的初始化方法，配置参数说明：        
+   1）. config.ajaxUrl  ---- ajax请求地址    
+   2）. config.$parent  ---- 外部html容器，必须为$Dom，如果未配置，默认是 $('body')    
+   3）. config.value    ---- 要显示的内容-数字，必须 为正整数    
+   4）. config.alert    ---- 异常提示的弹出框组件，默认为系统自带 window.alert    
+   5）. config.animate  ---- 动画效果，默认为  'animate-EaseInOut'    
+   6）. config.minLength --- 设置显示数字的最小位数，例如：value = '123' minLength=5 ,则 value = '00123';    
+   
+   例子：
+   ```
+      var animateNumberUI = new AnimateNumberUI();
+      animateNumberUI.init({minLength: 7,ajaxUrl:'http://127.0.0.1:18081/number'});
+   ```
+------   
+**render方法**       
+   配置参数说明：    
+   
+   1）. config.reRenderBool ，bool值。当该值为 true时，重新设置内部的 dom；
+   
+   一般在改变了 value 后，必须调用该方法。    
+   例子：    
+   ```
+     animateNumberUI.render();
+   ```       
+------   
+**after 方法**
+   
+   配置参数说明：    
+   
+   1）. callback, 回调函数；var callback = function(obj,value) {}    
+        obj 为实例化的 animateNumberUI；value 为显示的值（转换后的）
+   
+        一般在 配置了 ajaxUrl 时，使用该方法。
+        ```
+            var callback = function(obj, value) { 
+                obj.render();     	
+            };
+            animateNumberUI.init({minLength: 7,ajaxUrl:'http://127.0.0.1:18081/number'}).after(callback);
+        ```  
+------        
+**getValue 方法**
+   获取显示的值（转换后）                
+------
+
+## 更新
+
+【2016-04-05】    
+    1. 修复文字显示错位；
+    2. 修改内部ajax请求赋值；
